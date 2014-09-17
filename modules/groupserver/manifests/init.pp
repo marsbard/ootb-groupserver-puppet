@@ -51,7 +51,7 @@ class groupserver {
 
 	exec { "run-buildout":
 		cwd => "/root/${groupserver_name}",
-		command => "bin/buildout -N",
+		command => "/root/${groupserver_name}/bin/buildout -N",
 		path => "/bin:/usr/bin",
 		require => Exec["install-cssutils"],
 	}
