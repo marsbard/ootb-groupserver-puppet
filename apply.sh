@@ -2,4 +2,4 @@
 
 cd "`dirname $0`"
 
-sudo puppet apply --modulepath=./modules manifests/init.pp
+sudo puppet apply -v -d --modulepath=./modules manifests/init.pp
