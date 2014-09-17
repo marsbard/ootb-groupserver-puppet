@@ -44,7 +44,7 @@ class groupserver {
 
 	exec { "install-cssutils":
 		path => "/bin:/usr/bin",
-		command => "/root/${groupserver_name}/bin/pip install cssutils",
+		command => "/root/${groupserver_name}/bin/pip install cssutils lxml",
 		require => Exec["run-gs-install"],
 		cwd => "/root/${groupserver_name}",
 	}
