@@ -1,0 +1,236 @@
+# Configuration parameters for the buildout of GroupServer.
+
+[buildout]
+extends =
+    zope2-2.13.22-versions.cfg
+    versions.cfg
+    config.cfg
+    dependencies.cfg
+    instance.cfg
+    custom.cfg
+    develop.cfg
+
+index = http://eggs.iopen.net/groupserver/cache/
+
+# specify the URL of a custom egg cache in find-links to use eggs not in the
+# default distribution
+find-links =
+        http://eggs.iopen.net/groupserver/base/
+        http://eggs.iopen.net/groupserver/cache/
+
+allow-hosts =
+	*
+
+versions = versions
+
+# Products with ZCML files.
+zope-eggs =
+       Products.CustomUserFolder
+       Products.GroupServer
+       Products.GSContent
+       Products.GSContentManager
+       Products.GSGroup
+       Products.GSGroupMember
+       Products.GSParticipationStats
+       Products.GSProfile
+       Products.GSRedirect
+       Products.GSSearch
+       Products.GSFeedParser
+       Products.XWFChat
+       Products.XWFCore
+       Products.XWFFileLibrary2
+       Products.XWFMailingListManager
+       gs.auth.token
+       gs.config
+       gs.content.base
+       gs.content.css
+       gs.content.email.base
+       gs.content.email.css
+       gs.content.email.layout
+       gs.content.favicon
+       gs.content.form.api.json
+       gs.content.form.base
+       gs.content.js.bootstrap
+       gs.content.js.condense
+       gs.content.js.disclosure
+       gs.content.js.jquery.base
+       gs.content.js.jquery.ui
+       gs.content.js.loader
+       gs.content.js.more
+       gs.content.js.multifile
+       gs.content.js.required
+       gs.content.js.sharebox
+       gs.content.js.submit
+       gs.content.js.wymeditor
+       gs.content.layout
+       gs.database
+       gs.errormesg
+       gs.group.about
+       gs.group.base
+       gs.group.encouragement
+       gs.group.home
+       gs.group.member.active
+       gs.group.member.add.base
+       gs.group.member.add.csv
+       gs.group.member.add.json
+       gs.group.member.base
+       gs.group.member.bounce
+       gs.group.member.canpost
+       gs.group.member.directory
+       gs.group.member.email.base
+       gs.group.member.email.settings
+       gs.group.member.info
+       gs.group.member.invite.base
+       gs.group.member.invite.csv
+       gs.group.member.invite.json
+       gs.group.member.invite.resend
+       gs.group.member.join
+       gs.group.member.leave
+       gs.group.member.list
+       gs.group.member.log
+       gs.group.member.manage
+       gs.group.member.request
+       gs.group.member.viewlet
+       gs.group.messages.add.base
+       gs.group.messages.add.mbox2gs
+       gs.group.messages.add.smtp2gs
+       gs.group.messages.base
+       gs.group.messages.files
+       gs.group.messages.image
+       gs.group.messages.moderate
+       gs.group.messages.post
+       gs.group.messages.posts
+       gs.group.messages.privacy
+       gs.group.messages.ratelimit
+       gs.group.messages.starttopic
+       gs.group.messages.topic
+       gs.group.messages.topics
+       gs.group.messages.topicsdigest
+       gs.group.privacy
+       gs.group.properties
+       gs.group.start
+       gs.group.stats
+       gs.group.type.announcement
+       gs.group.type.closed
+       gs.group.type.discussion
+       gs.group.type.support
+       gs.groups
+       gs.help
+       gs.image
+       gs.login
+       gs.option
+       gs.profile.base
+       gs.profile.email.base
+       gs.profile.email.settings
+       gs.profile.email.verify
+       gs.profile.image.base
+       gs.profile.image.square
+       gs.profile.invite
+       gs.profile.notify
+       gs.profile.password
+       gs.profile.signup.base
+       gs.profile.signup.facebook
+       gs.profile.view
+       gs.search.base
+       gs.search.file
+       gs.search.people
+       gs.search.topic
+       gs.site.about
+       gs.site.changeintro
+       gs.site.change.base
+       gs.site.change.intro
+       gs.site.change.name
+       gs.site.change.tz
+       gs.site.home
+       gs.site.member
+       gs.site.stats
+       gs.site.welcome
+       gs.skin.blue
+       gs.skin.green
+       zope.globalrequest
+       five.globalrequest
+       infrae.wsgi
+       ${buildout:custom-zope-eggs}
+
+# Products that lack ZCML files.
+eggs = ${buildout:custom-eggs}
+       ${buildout:zope-eggs}
+       egenix-mx-base
+       elementtree
+       FeedParser
+       five.formlib
+       FormEncode
+       gs.auth.oauth.client
+       gs.cache
+       gs.core
+       gs.dmarc
+       gs.email
+       gs.form
+       gs.recipe.createtables
+       gs.recipe.config
+       gs.recipe.postfix
+       gs.recipe.setupgs
+       gs.viewlet
+       lxml
+       PasteScript
+       Pillow
+       Products.CMFCore
+       Products.CookieCrumbler
+       Products.CustomProperties
+       Products.DataTemplates
+       Products.FileSystemSite
+       Products.GSAuditTrail
+       Products.GSSiteMenu
+       Products.NuxUserGroups
+       Products.XWFIdFactory
+       Products.ZPsycopgDA
+       Products.ZSQLMethods
+       psycopg2
+       python-cjson
+       pytz
+       RelStorage
+       reportlab
+       simplejson
+       SQLAlchemy
+       StructuredText
+       trml2pdf
+       z3c.evalexception
+       z3c.form
+       z3c.rml
+       zif.jsonserver
+       zope.app.apidoc
+       zope.app.file
+       zope.app.folder
+       zope.app.rotterdam
+       zope.datetime
+       zope.sqlalchemy
+
+# These parts are installed when buildout is run
+# without any arguments
+parts =
+        instancepython
+        instance
+        testrunner
+        mkdirs
+        depsDoneMesg
+        gs-recipe-createtables
+        gs-recipe-config
+        gs-recipe-postfix
+        gs-recipe-setupgs
+        gsDoneMesg
+        gs-script-createtoken
+        gs-script-smtp2gs
+        gs-script-mbox2gs
+        gs-script-senddigest
+        doneMesg
+
+develop =
+
+eggs-directory = eggs
+etc-directory = ${buildout:directory}/parts/instance/etc
+unzip = true
+download-cache = downloads
+
+extensions =
+    isotoma.buildout.logger
+    mr.developer
